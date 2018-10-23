@@ -1,0 +1,28 @@
+{
+  "name": "eslint-outdated-rules-checker",
+  "version": "1.0.0",
+  "description": "ESLint-OutDated-Rules-Checker is a project which checks for outdated dependencies of different versions of ESLint Projects",
+  "main": "RuleCheckerScript.js",
+  "scripts": {
+    "test": "node RuleCheckerScript.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agrawal-prateek/ESLint-OutDated-Rules-Checker.git"
+  },
+  "keywords": [
+    "javascript",
+    "node.js",
+    "eslint",
+    "npm"
+  ],
+  "author": "Prateek Agrawal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/agrawal-prateek/ESLint-OutDated-Rules-Checker/issues"
+  },
+  "homepage": "https://github.com/agrawal-prateek/ESLint-OutDated-Rules-Checker#readme",
+  "devDependencies": {
+    "eslint": "^5.7.0"
+  }
+}
