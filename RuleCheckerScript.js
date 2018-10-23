@@ -47,6 +47,7 @@ try {
         console.log('Version of ESLint is undefined in package.json file in sample project');
         process.exit(0);
     }
+
     version = parseInt(version[version.match('[0-9].')['index']]);
     if (version === 1 || version === 2)
         eslintrc = JSON.parse(fs.readFileSync(path.join(projectPath, '.eslintrc'), 'utf8'));
@@ -55,18 +56,13 @@ try {
 
     projectRules = Object.keys(eslintrc['rules']);
     if (eslintrc['extends'] === 'eslint:recommended') {
-        if (version === 4 || version === 5)
+        if (version === 1 || version === 2 || version === 3)
+            projectRules = projectRules.concat(Object.keys(JSON.parse(fs.readFileSync(path.join(projectPath, 'node_modules', 'eslint', 'conf', 'eslint.json'), 'utf8'))['rules'])).unique();
+        else
             projectRules = projectRules.concat(Object.keys(require('./' + projectPath + '/node_modules/eslint/conf/eslint-recommended.js')['rules'])).unique();
-        else {
-            projectRules = projectRules.concat(Object.keys(JSON.parse(fs.readFileSync(path.join(projectPath, 'node_modules','eslint','conf','eslint.json'), 'utf8')))).unique();
-        }
     }
 
-    let deprecatedRules = [];
-    for (let i = 0; i < projectRules.length; i++) {
-        if (latestRules.indexOf(projectRules[i]) === -1)
-            deprecatedRules.push(projectRules[i]);
-    }
+    let deprecatedRules = projectRules.filter(x => latestRules.indexOf(x) < 0 );
     if (deprecatedRules.length === 0)
         console.log('\nThere are no Deprecated Rules for current project\n');
     else {
@@ -76,6 +72,15 @@ try {
         }
     }
 
+    let newRules = latestRules.filter(x => projectRules.indexOf(x) < 0 );
+    if (newRules.length === 0)
+        console.log('\nThere are no New Rules for current project\n');
+    else {
+        console.log('\n' + newRules.length + ' New Rules found:');
+        for (let i = 0; i < newRules.length; i++) {
+            console.log("\t" + newRules[i]);
+        }
+    }
 }
 catch (e) {
     console.log('Please make sure package.json file exist in the Project');
