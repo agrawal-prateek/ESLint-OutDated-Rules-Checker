@@ -1,0 +1,15 @@
+{
+  "name": "sampleproject_eslint_latest",
+  "version": "1.0.0",
+  "description": "sample project which uses eslint latest",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^5.7.0"
+  },
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "Prateek Agrawal",
+  "license": "ISC"
+}

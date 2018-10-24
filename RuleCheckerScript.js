@@ -62,7 +62,7 @@ try {
             projectRules = projectRules.concat(Object.keys(require('./' + projectPath + '/node_modules/eslint/conf/eslint-recommended.js')['rules'])).unique();
     }
 
-    let deprecatedRules = projectRules.filter(x => latestRules.indexOf(x) < 0 );
+    let deprecatedRules = projectRules.filter(x => latestRules.indexOf(x) < 0);
     if (deprecatedRules.length === 0)
         console.log('\nThere are no Deprecated Rules for current project\n');
     else {
@@ -72,7 +72,7 @@ try {
         }
     }
 
-    let newRules = latestRules.filter(x => projectRules.indexOf(x) < 0 );
+    let newRules = latestRules.filter(x => projectRules.indexOf(x) < 0);
     if (newRules.length === 0)
         console.log('\nThere are no New Rules for current project\n');
     else {
